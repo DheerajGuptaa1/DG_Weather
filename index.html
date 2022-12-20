@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather API </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="container col-p-12" id="pic">
+        <div class="wrap-1">
+            <div class="row">
+                <div class="col-12 col-p-12">
+                    <span>Weather Report</span> 
+                    <div class="CurrentLocation">
+                        <form action="." name="c_location">
+                            <button type="button" class="cLocation">
+                                <i class="fa-solid fa-location-crosshairs"></i>
+                            </button>
+                            <span class="current"></span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="wrap-2">
+            <div class="row">
+ 
+                <div class="col-8 col-p-12">
+                    <div class="Search">
+                        <form action="." name="City_Search">
+                            <label class="C"> <b>City Weather</b>  <input type="search" name="cityS">
+                                <button>
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                            </label>
+                            <br>
+                            <span class="err2"></span>
+                        </form>
+                    </div>
+                </div>
+        
+                <div class="col-4 col-p-12">
+
+                </div>
+ 
+            </div>  
+        </div>
+    </div>
+
+<script>
+     "use strict";
+
+     let apiKey="c604fac4064506ff2e0ed9a28827621b";
+
+         document.querySelector('.cLocation')
+        .addEventListener("click",function()
+        {
+            navigator.geolocation.getCurrentPosition(success);
+            function success(positions)
+            {
+                var lat1=positions.coords.latitude;
+                var lon1=positions.coords.longitude;
+                fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat1}&lon=${lon1}&APPID=${apiKey}`)
+                .then(i=>i.json())
+                .then(i=>     
+                {
+                    console.log(i.name);
+                    document.querySelector('.current').innerHTML=`Temp for Your Current Location ${i.name} City: ${(i.main.temp-273.15).toFixed(2)}`;
+                }
+                );
+            }
+        });
+
+     document.City_Search.addEventListener("submit",function(e)
+     {
+        e.preventDefault();
+        document.querySelector(".col-4").innerHTML="";
+        document.querySelector(".err2").innerHTML="";
+        let city=this.cityS.value;
+
+     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}`)
+     .then(res => res.json())
+     .then(mausam => 
+     {
+        if(mausam.cod=="404")
+        {
+        // document.querySelector(".err2").style="display: inline-block";
+
+            document.querySelector(".err2").style.display="inline-block";
+            document.querySelector(".err2").innerHTML="No City found";
+            document.querySelector(".err2").style="color:red";
+        }
+        else
+        {
+            
+        let temp=mausam.main.temp-273.15;
+        temp=temp.toFixed(2);
+
+        if(temp>=29 && temp<=36)
+        {
+            document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Clear_weather_CountrySide.jpg)`;
+        }
+
+        if(temp>=22 && temp<=28)
+        {
+            document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Fall_weather.jpeg)`;
+        }
+
+        if(temp>=14 && temp<=21)
+        {
+            document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Gangtok_Sightseeing.jpg);)`;
+        }
+
+        if(temp<=13 && temp>=6)
+        {
+            document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/dechen-phodrang-monastery.webp)`;
+        }
+
+        if(temp>=-12 && temp<=5)
+        {
+            document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Icy_Cold.jpg)`;
+        }
+
+        document.querySelector(".col-4").innerHTML=
+                    `<div class flex">
+                        <div class="half1">
+                            <h1><span style="color: maroon; font-size: 42px"> ${mausam.name} </span></h1>
+                            <h2><b></b> <span style="color: maroon;"> ${mausam.sys.country} </span></p>
+                            <h3></b> + ${(mausam.timezone)/3600} HOURS</h3>
+                            <h3 style="text-shadow: 5px 5px 5px pink;"><i class="fa-solid fa-wind"></i> <b>Wind: </b><span style="color: maroon;"> ${mausam.wind.speed}</span></h4>
+                            <h3 style="text-shadow: 5px 5px 5px pink;"><i class="fa-solid fa-droplet"></i> <b>Humidity: </b><span style="color: maroon;"> ${mausam.main.humidity}%</span></h4>
+                        </div>
+                        
+                        <div class="half2">
+                            <h2><span style="color: maroon; font-size: 72px">${(mausam.main.temp-273.15).toFixed(2)}&deg;C</span></h2>
+                            <h3 style="text-shadow: 5px 5px 5px pink;"><b>Temp. Min: </b><span style="color: maroon;">${(mausam.main.temp_min-273).toFixed(2)}</span></h3>
+                            <h3 style="text-shadow: 5px 5px 5px pink;"><b>Temp. Max: </b><span style="color: maroon;">${(mausam.main.temp_max-273).toFixed(2)}</span></h3>
+                            <h3 style="text-shadow: 5px 5px 5px pink;">Feels Like: <span style="color: maroon;">${(mausam.main.feels_like-273).toFixed(2)}</span></h3>
+                        </div>
+                    </div>
+
+                    <div class="center">
+                        <h3 style="text-shadow: 5px 5px 5px pink;"><b>Weather:</b> <span style="color: maroon;">${mausam.weather[0].main} </span></h3>
+                        <h3 style="text-shadow: 5px 5px 5px pink;"><b>Description:</b> <span style="color: maroon;">${mausam.weather[0].description}</span></h3>
+                        <h3 style="text-shadow: 5px 5px 5px pink;">Sunrise: <span style="color: maroon;">${(new Date(Number(mausam.sys.sunrise+"000")).toLocaleTimeString())}</span></h3>
+                        <h3 style="text-shadow: 5px 5px 5px pink;">Sunset: <span style="color: maroon;">${(new Date(Number(mausam.sys.sunset+"000")).toLocaleTimeString())}</span></h3>
+                        <p style="text-shadow: 7px 7px 7px pink;">Coord--> Longitude: ${mausam.coord.lon} & Lattitude: ${mausam.coord.lat} </p>
+                        <p style="text-shadow: 7px 7px 7px pink;">City ID: ${mausam.weather[0].id}</p>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+                    // document.querySelector(".row").appendChild(col);
+                }
+            });        
+        });         
+</script>     
+</body>
+</html>
