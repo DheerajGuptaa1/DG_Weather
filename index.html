@@ -7,7 +7,6 @@
     <title>Weather API </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -15,10 +14,13 @@
         <div class="wrap-1">
             <div class="row">
                 <div class="col-12 col-p-12">
-                    <span>Weather Report</span> 
+                    <div class="col-12">
+                        <h1> Weather Report </h1>
+                    </div>
+                     
                     <div class="CurrentLocation">
                         <form action="." name="c_location">
-                            <button type="button" class="cLocation">
+                            <button type="button" class="cLocation" aria-label="ClickHere For Temp of your Location">
                                 <i class="fa-solid fa-location-crosshairs"></i>
                             </button>
                             <span class="current"></span>
@@ -46,7 +48,6 @@
                 </div>
         
                 <div class="col-4 col-p-12">
-
                 </div>
  
             </div>  
@@ -57,7 +58,6 @@
      "use strict";
 
      let apiKey="c604fac4064506ff2e0ed9a28827621b";
-
          document.querySelector('.cLocation')
         .addEventListener("click",function()
         {
@@ -72,8 +72,7 @@
                 {
                     console.log(i.name);
                     document.querySelector('.current').innerHTML=`Temp for Your Current Location ${i.name} City: ${(i.main.temp-273.15).toFixed(2)}`;
-                }
-                );
+                });
             }
         });
 
@@ -82,6 +81,7 @@
         e.preventDefault();
         document.querySelector(".col-4").innerHTML="";
         document.querySelector(".err2").innerHTML="";
+
         let city=this.cityS.value;
 
      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}`)
@@ -90,11 +90,8 @@
      {
         if(mausam.cod=="404")
         {
-        // document.querySelector(".err2").style="display: inline-block";
-
-            document.querySelector(".err2").style.display="inline-block";
             document.querySelector(".err2").innerHTML="No City found";
-            document.querySelector(".err2").style="color:red";
+            document.querySelector(".err2").style="color:red; display: inline";
         }
         else
         {
@@ -102,9 +99,9 @@
         let temp=mausam.main.temp-273.15;
         temp=temp.toFixed(2);
 
-        if(temp>=29 && temp<=36)
+        if(temp>=29 && temp<=35)
         {
-            document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Clear_weather_CountrySide.jpg)`;
+            document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Clear_weather_CountrySide1.jpg)`;
         }
 
         if(temp>=22 && temp<=28)
@@ -112,17 +109,27 @@
             document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Fall_weather.jpeg)`;
         }
 
-        if(temp>=14 && temp<=21)
+        if(temp>=15 && temp<=21)
         {
-            document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Gangtok_Sightseeing.jpg);)`;
+            document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/SunnyBright2.jpg)`;
         }
 
-        if(temp<=13 && temp>=6)
+        if(temp>=8 && temp<=14)
         {
-            document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/dechen-phodrang-monastery.webp)`;
+            document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Gangtok_Sightseeing.jpg)`;
         }
 
-        if(temp>=-12 && temp<=5)
+        if(temp>=1 && temp<=7)
+        {
+            document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Snow_in_City.jpg)`;
+        }
+
+        if(temp>=-6 && temp<=0)
+        {
+            document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Gangtok-Snow-Christmas-1.jpg)`;
+        }
+
+        if(temp>=-15 && temp<=-7)
         {
             document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Icy_Cold.jpg)`;
         }
@@ -130,18 +137,18 @@
         document.querySelector(".col-4").innerHTML=
                     `<div class flex">
                         <div class="half1">
-                            <h1><span style="color: maroon; font-size: 42px"> ${mausam.name} </span></h1>
-                            <h2><b></b> <span style="color: maroon;"> ${mausam.sys.country} </span></p>
+                            <h2><span style="color: maroon;"> ${mausam.name} </span></h2>
+                            <h2><b></b> <span style="color: maroon;"> ${mausam.sys.country} </span></h2>
                             <h3></b> + ${(mausam.timezone)/3600} HOURS</h3>
                             <h3 style="text-shadow: 5px 5px 5px pink;"><i class="fa-solid fa-wind"></i> <b>Wind: </b><span style="color: maroon;"> ${mausam.wind.speed}</span></h4>
                             <h3 style="text-shadow: 5px 5px 5px pink;"><i class="fa-solid fa-droplet"></i> <b>Humidity: </b><span style="color: maroon;"> ${mausam.main.humidity}%</span></h4>
                         </div>
                         
                         <div class="half2">
-                            <h2><span style="color: maroon; font-size: 72px">${(mausam.main.temp-273.15).toFixed(2)}&deg;C</span></h2>
-                            <h3 style="text-shadow: 5px 5px 5px pink;"><b>Temp. Min: </b><span style="color: maroon;">${(mausam.main.temp_min-273).toFixed(2)}</span></h3>
-                            <h3 style="text-shadow: 5px 5px 5px pink;"><b>Temp. Max: </b><span style="color: maroon;">${(mausam.main.temp_max-273).toFixed(2)}</span></h3>
-                            <h3 style="text-shadow: 5px 5px 5px pink;">Feels Like: <span style="color: maroon;">${(mausam.main.feels_like-273).toFixed(2)}</span></h3>
+                            <h2><span style="color: maroon;">${(mausam.main.temp-273.15).toFixed(2)}&deg;C</span></h2>
+                            <h3 style="text-shadow: 5px 5px 5px pink;"><b>Temp. Min: </b><span style="color: maroon;">${(mausam.main.temp_min-273).toFixed(2)}&deg;C</span></h3>
+                            <h3 style="text-shadow: 5px 5px 5px pink;"><b>Temp. Max: </b><span style="color: maroon;">${(mausam.main.temp_max-273).toFixed(2)}&deg;C</span></h3>
+                            <h3 style="text-shadow: 5px 5px 5px pink;">Feels Like: <span style="color: maroon;">${(mausam.main.feels_like-273).toFixed(2)}&deg;C</span></h3>
                         </div>
                     </div>
 
@@ -156,10 +163,9 @@
                 </div>
             </div>
         </div>`;
-                    // document.querySelector(".row").appendChild(col);
                 }
             });        
-        });         
+        });
 </script>     
 </body>
 </html>
