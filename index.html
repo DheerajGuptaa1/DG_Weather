@@ -49,15 +49,18 @@
                 
                     <div class="row">
                         <div class="col-12-1 col-p-12">
+
                         </div>
                     </div>
         
                 </div>
 
+
                 <div class="col-4 col-p-12">
+
                 </div>
+ 
             </div>  
-        
         </div>
     </div>
 
@@ -65,6 +68,7 @@
      "use strict";
 
      let apiKey="c604fac4064506ff2e0ed9a28827621b";
+
          document.querySelector('.cLocation')
         .addEventListener("click",function()
         {
@@ -157,7 +161,7 @@
             document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Icy_Cold.jpg)`;
         }
 
-                   document.querySelector(".col-4").innerHTML=
+        document.querySelector(".col-4").innerHTML=
                     `<div class flex">
                         <div class="half1">
                             <h2><span style="color: maroon;"> ${mausam.name} </span></h2>
@@ -182,8 +186,11 @@
                         <h3 style="text-shadow: 5px 5px 5px pink;">Sunset: <span style="color: maroon;">${(new Date(Number(mausam.sys.sunset+"000")).toLocaleTimeString())}</span></h3>
                         <p style="text-shadow: 7px 7px 7px pink;">Coord--> Longitude: ${mausam.coord.lon} & Lattitude: ${mausam.coord.lat} </p>
                         <p style="text-shadow: 7px 7px 7px pink;">City ID: ${mausam.weather[0].id}</p>
-                    </div>`;
-         }
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    }
 
         fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${mausam.coord.lat}&lon=${mausam.coord.lon}&appid=${apiKey}`)  
         .then(p => p.json())
@@ -197,15 +204,16 @@
                     document.querySelector('.col-12-1').innerHTML=
                     `<h2 style="text-shadow: 2px 2px 2px pink;">Air Quality Index for ${mausam.name} is:</h2>
                     <h3>${(new Date(Number(j.dt+"000")))}</h3>
-                    <div class="center">
-                        <h2 style="text-shadow: 5px 5px 5px pink;">PM 10: <span style="color:maroon;">${j.components.pm10}</span></h2>
-                        <h3 style="text-shadow: 5px 5px 5px pink;">CO: <span style="color:maroon;">${j.components.co}</span></h3>
-                        <h3 style="text-shadow: 5px 5px 5px pink;">NH3: <span style="color:maroon;">${j.components.nh3}</span></h3>
-                        <h3 style="text-shadow: 5px 5px 5px pink;">NO: <span style="color:maroon;">${j.components.no}</span> </h3>
-                        <h3 style="text-shadow: 5px 5px 5px pink;">NO2: <span style="color:maroon;">${j.components.no2}</span></h3>
-                        <h3 style="text-shadow: 5px 5px 5px pink;">O3: <span style="color:maroon;">${j.components.o3}</span></h3>
-                        <h3 style="text-shadow: 5px 5px 5px pink;">PM 2.5: <span style="color:maroon;">${j.components.pm2_5}</span></h3>
-                        <h3 style="text-shadow: 5px 5px 5px pink;">SO2: <span style="color:maroon;">${j.components.so2}</span></h3>
+                    <br>
+                    <div>
+                        <h3 style="text-shadow: 1px 1px 1px pink;">Concentration of PM10 (Coarse Particulate Matter), μg/m3: <span style="color:maroon;">${j.components.pm10}</span></h3>
+                        <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of CO (Carbon monoxide), μg/m3: <span style="color:maroon;">${j.components.co}</span></h3>
+                        <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of NH3 (Ammonia), μg/m3: <span style="color:maroon;">${j.components.nh3}</span></h3>
+                        <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of NO (Nitrogen monoxide), μg/m3: <span style="color:maroon;">${j.components.no}</span> </h3>
+                        <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of NO2 (Nitrogen dioxide), μg/m3: <span style="color:maroon;">${j.components.no2}</span></h3>
+                        <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of O3 (Ozone), μg/m3: <span style="color:maroon;">${j.components.o3}</span></h3>
+                        <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of PM2.5 (Fine particles matter), μg/m3: <span style="color:maroon;">${j.components.pm2_5}</span></h3>
+                        <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of SO2 (Sulphur dioxide), μg/m3: <span style="color:maroon;">${j.components.so2}</span></h3>
                     </div>`;
                 }
             });
