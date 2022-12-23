@@ -23,7 +23,8 @@
                             <button type="button" class="cLocation" aria-label="ClickHere For Temp of your Location">
                                 <i class="fa-solid fa-location-crosshairs"></i>
                             </button>
-                            <span class="current"></span>
+                            <span class="current"></span><br>
+                            <span class="cAQI"></span>
                         </form>
                     </div>
                 </div>
@@ -45,9 +46,18 @@
                             <span class="err2"></span>
                         </form>
                     </div>
-                </div>
+                
+                    <div class="row">
+                        <div class="col-12-1 col-p-12">
+
+                        </div>
+                    </div>
         
+                </div>
+
+
                 <div class="col-4 col-p-12">
+
                 </div>
  
             </div>  
@@ -58,9 +68,12 @@
      "use strict";
 
      let apiKey="c604fac4064506ff2e0ed9a28827621b";
+
          document.querySelector('.cLocation')
         .addEventListener("click",function()
         {
+            document.querySelector(".current").style="display: inline";
+            document.querySelector(".cAQI").style="display: inline";
             navigator.geolocation.getCurrentPosition(success);
             function success(positions)
             {
@@ -73,6 +86,20 @@
                     console.log(i.name);
                     document.querySelector('.current').innerHTML=`Temp for Your Current Location ${i.name} City: ${(i.main.temp-273.15).toFixed(2)}`;
                 });
+
+                fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat1}&lon=${lon1}&appid=${apiKey}`)  
+                .then(res => res.json())
+                .then(i =>
+                {
+                    console.log(i.list);
+                    i.list.forEach((j, k) =>
+                    {
+                        for(let l in j)
+                        {
+                            document.querySelector('.cAQI').innerHTML=`AQI for Your Current Location is ${j.components.pm10}`;
+                        }
+                    });
+                });
             }
         });
 
@@ -81,6 +108,7 @@
         e.preventDefault();
         document.querySelector(".col-4").innerHTML="";
         document.querySelector(".err2").innerHTML="";
+        document.querySelector(".col-12-1").innerHTML="";
 
         let city=this.cityS.value;
 
@@ -93,9 +121,9 @@
             document.querySelector(".err2").innerHTML="No City found";
             document.querySelector(".err2").style="color:red; display: inline";
         }
-        else
-        {
-            
+   
+      else
+      {      
         let temp=mausam.main.temp-273.15;
         temp=temp.toFixed(2);
 
@@ -118,7 +146,7 @@
         {
             document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Gangtok_Sightseeing.jpg)`;
         }
-
+        
         if(temp>=1 && temp<=7)
         {
             document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Snow_in_City.jpg)`;
@@ -128,7 +156,6 @@
         {
             document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Gangtok-Snow-Christmas-1.jpg)`;
         }
-
         if(temp>=-15 && temp<=-7)
         {
             document.querySelector('.container').style.backgroundImage=`url(./Weather-pix/Icy_Cold.jpg)`;
@@ -163,9 +190,35 @@
                 </div>
             </div>
         </div>`;
+    }
+
+        fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${mausam.coord.lat}&lon=${mausam.coord.lon}&appid=${apiKey}`)  
+        .then(p => p.json())
+        .then(m =>
+        {
+            console.log(m.list);
+            m.list.forEach((j, k) =>
+            {
+                for(let l in j)
+                {
+                    document.querySelector('.col-12-1').innerHTML=
+                    `<h2 style="text-shadow: 2px 2px 2px pink;">Air Quality Index for ${mausam.name} is:</h2>
+                    <h3>${(new Date(Number(j.dt+"000")))}</h3>
+                    <div class="center">
+                        <h2 style="text-shadow: 5px 5px 5px pink;">PM 10: <span style="color:maroon;">${j.components.pm10}</span></h2>
+                        <h3 style="text-shadow: 5px 5px 5px pink;">CO: <span style="color:maroon;">${j.components.co}</span></h3>
+                        <h3 style="text-shadow: 5px 5px 5px pink;">NH3: <span style="color:maroon;">${j.components.nh3}</span></h3>
+                        <h3 style="text-shadow: 5px 5px 5px pink;">NO: <span style="color:maroon;">${j.components.no}</span> </h3>
+                        <h3 style="text-shadow: 5px 5px 5px pink;">NO2: <span style="color:maroon;">${j.components.no2}</span></h3>
+                        <h3 style="text-shadow: 5px 5px 5px pink;">O3: <span style="color:maroon;">${j.components.o3}</span></h3>
+                        <h3 style="text-shadow: 5px 5px 5px pink;">PM 2.5: <span style="color:maroon;">${j.components.pm2_5}</span></h3>
+                        <h3 style="text-shadow: 5px 5px 5px pink;">SO2: <span style="color:maroon;">${j.components.so2}</span></h3>
+                    </div>`;
                 }
-            });        
-        });
+            });
+        });    
+    });         
+});        
 </script>     
 </body>
 </html>
