@@ -11,12 +11,18 @@
   .row .col-3 {
     flex-basis: 25%;
     max-width: 25%;}
-    
+  
+  /* .row .col-4 {
+    flex-basis: 33.3333333333%;
+    max-width: 33.3333333333%;
+  } */
+  
 .col-4{
       flex: 1 0 33.33%;
-      height: 560px;
-      border: 1px solid #666;
-      margin: 20px 8px; 
+      height: 570px;
+      border: 3px solid #666;
+      margin: 0 5px; 
+      padding: 5px 5px;
       background-image: linear-gradient( 135deg, rgba(255, 0, 0, .6), rgba(0, 255, 0, .6));}
   
   .row .col-6 {
@@ -37,9 +43,9 @@
 
   .col-12-1{
       flex: 1 0 100%;
-      height: 310px;
-      border: 1px solid #666;
-      margin: 10px 8px; 
+      height: 313px;
+      padding: 5px 5px;
+      border: 3px solid #666;
       background-image: linear-gradient( 135deg, rgba(255, 0, 0, .6), rgba(0, 255, 0, .6));}
 
 
@@ -81,16 +87,14 @@
         box-shadow: 3px 3px 3px 3px rgb(161, 161, 228) inset;
         text-shadow: 3px 3px 3px goldenrod;
         color: tomato;}
-        
+      
     .err2
     {display: none;
       line-height: 36px;
       padding: 7px 7px;
       text-align: center;
       font-size: 32px; border-radius: 10px;
-      background-color: lightblue;
-        box-shadow: 6px 6px 6px 6px #00008b inset;
-        text-shadow: 3px 3px 3px goldenrod; color: tomato; margin-left: 182px; }
+      background-color: lightblue; box-shadow: 6px 6px 6px 6px #00008b inset; text-shadow: 3px 3px 3px goldenrod; color: tomato; margin-left: 182px; }
           
     image{vertical-align: bottom;}
   
@@ -111,7 +115,18 @@ input {
   color: #313131;
   font-size: 30px;
   font-weight: 300;
-  transition: 0.2s ease-out;}
+  transition: 0.2s ease-out;
+
+        /* line-height: 34px;
+        padding: 3px 0;
+        text-align: center;
+        font-size: 30px;
+        border-radius: 4px;
+        background-color: lightblue;
+        box-shadow: 3px 3px 3px 3px darkblue inset;
+        text-shadow: 2px 2px 2px rgb(167, 128, 29);
+        color: maroon; */
+}
 
     .Search {margin: 100px 50px;
       width: 600px;
@@ -149,8 +164,7 @@ input {
         h2{ font-size: 72px;}
     }
   
-    @media screen  and (max-width:980px)
-    {   
+    @media screen  and (max-width:980px){   
          h2{ font-size: 48px;}   
         .row .col-t-6{flex-basis: 50%;max-width: 50%;}
         .row .col-t-12{flex-basis: 100%;max-width: 100%;}
@@ -158,8 +172,7 @@ input {
         .row .col-t-auto{ flex-basis: 20%; max-width: 20%;}
     }
 
-    @media screen  and (max-width:767px)
-    {       
+    @media screen  and (max-width:767px){       
         .wrap-1 .row span{font-size: 18px; }
 
         .wrap-1 .row .cLocation i{font-size: 18px;}
@@ -173,14 +186,14 @@ input {
         h2 span{ font-size: 36px;}
     }
 
-    @media screen  and (max-width:460px)
-    { 
-        h1 { font-size: 42px;}
-        h2 span{ font-size: 32px;}
-        .row .col-p-4{flex-basis: 33.33%; max-width: 33.33%;}
-        .row .col-p-6{flex-basis: 50%; max-width: 50%;}
-        .row .col-p-12{flex-basis: 100%; max-width: 100%;}
-        .wrap-2 .row .Search{
+    @media screen  and (max-width:460px){ 
+    
+    h1 { font-size: 42px;}
+    h2 span{ font-size: 32px;}
+    .row .col-p-4{flex-basis: 33.33%; max-width: 33.33%;}
+    .row .col-p-6{flex-basis: 50%; max-width: 50%;}
+    .row .col-p-12{flex-basis: 100%; max-width: 100%;}
+    .wrap-2 .row .Search{
         margin-top: 0px;
         margin-right: 0;
         margin-bottom: 0px;
@@ -201,11 +214,11 @@ text-shadow: 2px 2px 2px goldenrod;
 color: tomato;
 margin-left: 3px;}
 
-            .C {font-size: 18px;}
+.C {font-size: 18px;}
 
-            .Search .C input{
-            line-height: 32px;
-            padding: 1px 1px;
+.Search .C input{
+  line-height: 32px;
+  padding: 1px 1px;
             text-align: center;
             font-size: 20px;
             border-radius: 2px;
@@ -214,10 +227,11 @@ margin-left: 3px;}
             text-shadow: 2px 2px 2px rgb(167, 128, 29);
             color: maroon;
             position: relative;}
-               
-            .cLocation{font-size: 19px; display: inline-block; background-color: darkolivegreen; color: burlywood;}
+            
+        
+          .cLocation{font-size: 19px; display: inline-block; background-color: darkolivegreen; color: burlywood;}
 
-            .Search .C button{line-height: 22px;
+        .Search .C button{line-height: 22px;
             padding: 2px 2px;
             text-align: left;
             font-size: 20px;
