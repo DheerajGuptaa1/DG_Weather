@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather API </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -20,7 +21,7 @@
                      
                     <div class="CurrentLocation">
                         <form action="." name="c_location">
-                            <button type="button" class="cLocation" aria-label="ClickHere For Temp of your Location">
+                            <button type="button" class="cLocation" title="ClickHere For Temp of your Location">
                                 <i class="fa-solid fa-location-crosshairs"></i>
                             </button>
                             <span class="current"></span><br>
@@ -38,7 +39,7 @@
                     <div class="Search">
                         <form action="." name="City_Search">
                             <label class="C"> <b>City Weather</b>  <input type="search" name="cityS">
-                                <button>
+                                <button title="Enter Name of the city you desire to find 'Weather Details' about">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
                             </label>
@@ -206,7 +207,7 @@
                     <h3>${(new Date(Number(j.dt+"000")))}</h3>
                     <br>
                     <div>
-                        <h3 style="text-shadow: 1px 1px 1px pink;">Concentration of PM10 (Coarse Particulate Matter), μg/m3: <span style="color:maroon;">${j.components.pm10}</span></h3>
+                        <h3 style="text-shadow: 1px 1px 1px pink;">Concentration of PM10 (Coarse Particulate Matter), μg/m3: <span style="color:maroon; font-size: 28px;">${j.components.pm10}</span></h3>
                         <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of CO (Carbon monoxide), μg/m3: <span style="color:maroon;">${j.components.co}</span></h3>
                         <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of NH3 (Ammonia), μg/m3: <span style="color:maroon;">${j.components.nh3}</span></h3>
                         <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of NO (Nitrogen monoxide), μg/m3: <span style="color:maroon;">${j.components.no}</span> </h3>
@@ -220,6 +221,15 @@
         });    
     });         
 });        
-</script>     
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+$( function()
+{
+  $( document ).tooltip();
+} );
+</script>
+
 </body>
 </html>
