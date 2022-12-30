@@ -58,6 +58,13 @@
  
             </div>  
         </div>
+
+        <div class="wrap-3">     
+            <footer>
+                <p>&copy;DG10 in 2022</p>
+                <button class="btn top">Go To Top</button>
+            </footer>
+        </div>
     </div>
 
 <script>
@@ -76,9 +83,10 @@
                 var lat1=positions.coords.latitude;
                 var lon1=positions.coords.longitude;
                 fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat1}&lon=${lon1}&APPID=${apiKey}`)
-                .then(i => i.json())
-                .then(i =>
+                .then(i=>i.json())
+                .then(i=>     
                 {
+                    console.log(i.name);
                     document.querySelector('.current').innerHTML=`Temp for Your Current Location ${i.name} City: ${(i.main.temp-273.15).toFixed(2)}`;
                 });
 
@@ -216,14 +224,38 @@
     });         
 });        
 </script>
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
-$( function()
-{
-  $( document ).tooltip();
-} );
-</script>
+    
+    $(function ()
+    {
+        $(document).tooltip();
+    });
 
+    /* Scroll to Top*/
+    $(".top").click(function()
+    {
+        $("body,html").animate(
+        {
+            scrollTop:0,
+        },1500)
+    });
+
+    $(window).scroll(function()
+    {
+        var y=$(this).scrollTop();
+        var vh=$(window).height();
+
+        if(y>=500){
+            $(".top").fadeIn()
+        }
+        else{
+            $(".top").fadeOut()
+        }       
+    });
+
+</script>
 </body>
 </html>
