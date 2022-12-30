@@ -193,7 +193,7 @@
         </div>`;
     }
 
-        fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${mausam.coord.lat}&lon=${mausam.coord.lon}&appid=${apiKey}`)  
+        fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${mausam.coord.lat}&lon=${mausam.coord.lon}&appid=${apiKey}`)  
         .then(p => p.json())
         .then(m =>
         {
