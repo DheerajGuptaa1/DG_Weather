@@ -123,6 +123,8 @@ input {
   color: #313131;
   transition: 0.2s ease-out;
 }
+input:hover{ background: #313131; color: rgba(0, 250, 250, 0.3); }
+
 
     .Search {margin: 100px 50px;
       width: 600px;
@@ -154,6 +156,29 @@ input {
     .half1{ flex: 1 0 50%; max-width: 100%; padding: 10px; text-align: left}
     .half2{ flex: 1 0 50%; max-width: 100%; padding: 10px; text-align: right;}
     .center{padding: 10px; text-align: left;}
+
+    .wrap-3{
+      background-color: rgba(0, 128, 128, 0.4);
+    }
+    .wrap-3 footer p{
+      text-align: center;
+      color: goldenrod;
+      padding: 40px 0 20px;
+      font-size: 22px;
+      line-height: 30px;}
+
+      .btn{width: auto;
+        height: 30px;
+        background: brown;
+        color:  cornsilk;
+        border-radius: 5px;
+        text-align: center;
+        padding: 3px 6px;
+        margin: 5px 5px;
+        display: inline-block;
+        vertical-align: bottom;}
+    .btn:hover{ background: #ccc; color: brown; }
+    .top{ position: fixed; right: 5px; bottom: 5px;}
 
     @media screen  and (max-width:1220px){       
         h2{ font-size: 60px;}
