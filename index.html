@@ -76,10 +76,9 @@
                 var lat1=positions.coords.latitude;
                 var lon1=positions.coords.longitude;
                 fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat1}&lon=${lon1}&APPID=${apiKey}`)
-                .then(i=>i.json())
-                .then(i=>     
+                .then(i => i.json())
+                .then(i =>
                 {
-                    console.log(i.name);
                     document.querySelector('.current').innerHTML=`Temp for Your Current Location ${i.name} City: ${(i.main.temp-273.15).toFixed(2)}`;
                 });
 
