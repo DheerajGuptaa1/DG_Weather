@@ -83,7 +83,7 @@
                     document.querySelector('.current').innerHTML=`Temp for Your Current Location ${i.name} City: ${(i.main.temp-273.15).toFixed(2)}`;
                 });
 
-                fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat1}&lon=${lon1}&appid=${apiKey}`)  
+                fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat1}&lon=${lon1}&appid=${apiKey}`)  
                 .then(res => res.json())
                 .then(i =>
                 {
@@ -188,7 +188,7 @@
         </div>`;
     }
 
-        fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${mausam.coord.lat}&lon=${mausam.coord.lon}&appid=${apiKey}`)  
+        fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${mausam.coord.lat}&lon=${mausam.coord.lon}&appid=${apiKey}`)  
         .then(p => p.json())
         .then(m =>
         {
