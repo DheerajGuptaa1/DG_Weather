@@ -170,25 +170,25 @@
                             <h2><span style="color: maroon;"> ${mausam.name} </span></h2>
                             <h2><b></b> <span style="color: maroon;"> ${mausam.sys.country} </span></h2>
                             <h3></b> + ${(mausam.timezone)/3600} HOURS</h3>
-                            <h3 style="text-shadow: 5px 5px 5px pink;"><i class="fa-solid fa-wind"></i> <b>Wind: </b><span style="color: maroon;"> ${mausam.wind.speed}</span></h4>
-                            <h3 style="text-shadow: 5px 5px 5px pink;"><i class="fa-solid fa-droplet"></i> <b>Humidity: </b><span style="color: maroon;"> ${mausam.main.humidity}%</span></h4>
+                            <h3><i class="fa-solid fa-wind"></i> <b>Wind: </b><span style="color: maroon;"> ${mausam.wind.speed}</span></h4>
+                            <h3><i class="fa-solid fa-droplet"></i> <b>Humidity: </b><span style="color: maroon;"> ${mausam.main.humidity}%</span></h4>
                         </div>
                         
                         <div class="half2">
                             <h2><span style="color: maroon;">${(mausam.main.temp-273.15).toFixed(2)}&deg;C</span></h2>
-                            <h3 style="text-shadow: 5px 5px 5px pink;"><b>Temp. Min: </b><span style="color: maroon;">${(mausam.main.temp_min-273).toFixed(2)}&deg;C</span></h3>
-                            <h3 style="text-shadow: 5px 5px 5px pink;"><b>Temp. Max: </b><span style="color: maroon;">${(mausam.main.temp_max-273).toFixed(2)}&deg;C</span></h3>
-                            <h3 style="text-shadow: 5px 5px 5px pink;">Feels Like: <span style="color: maroon;">${(mausam.main.feels_like-273).toFixed(2)}&deg;C</span></h3>
+                            <h3><b>Temp. Min: </b><span style="color: maroon;">${(mausam.main.temp_min-273).toFixed(2)}&deg;C</span></h3>
+                            <h3><b>Temp. Max: </b><span style="color: maroon;">${(mausam.main.temp_max-273).toFixed(2)}&deg;C</span></h3>
+                            <h3>Feels Like: <span style="color: maroon;">${(mausam.main.feels_like-273).toFixed(2)}&deg;C</span></h3>
                         </div>
                     </div>
 
                     <div class="center">
-                        <h3 style="text-shadow: 5px 5px 5px pink;"><b>Weather:</b> <span style="color: maroon;">${mausam.weather[0].main} </span></h3>
-                        <h3 style="text-shadow: 5px 5px 5px pink;"><b>Description:</b> <span style="color: maroon;">${mausam.weather[0].description}</span></h3>
-                        <h3 style="text-shadow: 5px 5px 5px pink;"> <i class="fa-duotone fa-sunrise"></i> Sunrise: <span style="color: maroon;">${(new Date(Number(mausam.sys.sunrise+"000")).toLocaleTimeString())}</span></h3>
-                        <h3 style="text-shadow: 5px 5px 5px pink;"> <i class="fa-duotone fa-sunset"></i> Sunset: <span style="color: maroon;">${(new Date(Number(mausam.sys.sunset+"000")).toLocaleTimeString())}</span></h3>
-                        <p style="text-shadow: 7px 7px 7px pink;">Coord--> Longitude: ${mausam.coord.lon} & Lattitude: ${mausam.coord.lat} </p>
-                        <p style="text-shadow: 7px 7px 7px pink;">City ID: ${mausam.weather[0].id}</p>
+                        <h3><b>Weather:</b> <span style="color: maroon;">${mausam.weather[0].main} </span></h3>
+                        <h3><b>Description:</b> <span style="color: maroon;">${mausam.weather[0].description}</span></h3>
+                        <h3> <i class="fa-solid fa-sunrise"></i> Sunrise: <span style="color: maroon;">${(new Date(Number(mausam.sys.sunrise+"000")).toLocaleTimeString())}</span></h3>
+                        <h3> <i class="fa-solid fa-sunset"></i> Sunset: <span style="color: maroon;">${(new Date(Number(mausam.sys.sunset+"000")).toLocaleTimeString())}</span></h3>
+                        <p>Coord--> Longitude: ${mausam.coord.lon} & Lattitude: ${mausam.coord.lat} </p>
+                        <p>City ID: ${mausam.weather[0].id}</p>
                     </div>
                 </div>
             </div>
@@ -205,18 +205,18 @@
                 for(let l in j)
                 {
                     document.querySelector('.col-12-1').innerHTML=
-                    `<h2 style="text-shadow: 2px 2px 2px pink;">Air Quality Index for ${mausam.name} is:</h2>
+                    `<h2>Air Quality Index for ${mausam.name} is:</h2>
                     <h3>${(new Date(Number(j.dt+"000")))}</h3>
                     <br>
                     <div>
-                        <h3 style="text-shadow: 1px 1px 1px pink;">Concentration of PM10 (Coarse Particulate Matter), μg/m3: <span style="color:maroon; font-size: 28px;">${j.components.pm10}</span></h3>
-                        <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of CO (Carbon monoxide), μg/m3: <span style="color:maroon;">${j.components.co}</span></h3>
-                        <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of NH3 (Ammonia), μg/m3: <span style="color:maroon;">${j.components.nh3}</span></h3>
-                        <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of NO (Nitrogen monoxide), μg/m3: <span style="color:maroon;">${j.components.no}</span> </h3>
-                        <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of NO2 (Nitrogen dioxide), μg/m3: <span style="color:maroon;">${j.components.no2}</span></h3>
-                        <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of O3 (Ozone), μg/m3: <span style="color:maroon;">${j.components.o3}</span></h3>
-                        <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of PM2.5 (Fine particles matter), μg/m3: <span style="color:maroon;">${j.components.pm2_5}</span></h3>
-                        <h3 style="text-shadow: 2px 2px 2px pink;">Concentration of SO2 (Sulphur dioxide), μg/m3: <span style="color:maroon;">${j.components.so2}</span></h3>
+                        <h3>Concentration of PM10 (Coarse Particulate Matter), μg/m3: <span style="color:maroon; font-size: 28px;">${j.components.pm10}</span></h3>
+                        <h3>Concentration of CO (Carbon monoxide), μg/m3: <span style="color:maroon;">${j.components.co}</span></h3>
+                        <h3>Concentration of NH3 (Ammonia), μg/m3: <span style="color:maroon;">${j.components.nh3}</span></h3>
+                        <h3>Concentration of NO (Nitrogen monoxide), μg/m3: <span style="color:maroon;">${j.components.no}</span> </h3>
+                        <h3>Concentration of NO2 (Nitrogen dioxide), μg/m3: <span style="color:maroon;">${j.components.no2}</span></h3>
+                        <h3>Concentration of O3 (Ozone), μg/m3: <span style="color:maroon;">${j.components.o3}</span></h3>
+                        <h3>Concentration of PM2.5 (Fine particles matter), μg/m3: <span style="color:maroon;">${j.components.pm2_5}</span></h3>
+                        <h3>Concentration of SO2 (Sulphur dioxide), μg/m3: <span style="color:maroon;">${j.components.so2}</span></h3>
                     </div>`;
                 }
             });
@@ -227,35 +227,6 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-<script>
-    
-    $(function ()
-    {
-        $(document).tooltip();
-    });
-
-    /* Scroll to Top*/
-    $(".top").click(function()
-    {
-        $("body,html").animate(
-        {
-            scrollTop:0,
-        },1500)
-    });
-
-    $(window).scroll(function()
-    {
-        var y=$(this).scrollTop();
-        var vh=$(window).height();
-
-        if(y>=500){
-            $(".top").fadeIn()
-        }
-        else{
-            $(".top").fadeOut()
-        }       
-    });
-
-</script>
+<script src="./tip-top.js"></script>        
 </body>
 </html>
